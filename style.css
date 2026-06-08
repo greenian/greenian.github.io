@@ -362,11 +362,16 @@ img {
   .grid article {
     width: calc(50% - 2%);
   }
+  h1.title {
+    font-size: clamp(5rem, 5vw, 5rem) !important
+  }
 }
+
 
 @media (max-width: 479px) {
   .grid article {
     margin: 2% 0;
     width: calc(100% - 4%);
   }
+  
 }

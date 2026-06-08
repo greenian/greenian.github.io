@@ -159,6 +159,10 @@
                 $( this ).addClass('is-checked');
                 });
             });
+
+            $(window).on('load', function() {
+                $grid.isotope('layout');
+            });
             });
 
             // debounce so filtering doesn't happen every millisecond
@@ -175,10 +179,6 @@
                 timeout = setTimeout( delayed, threshold || 100 );
             }
             }
-
-            $(window).bind("load", function() {
-            $('#all').click();
-        });
     </script>
     <script>
         const collapseElement = document.getElementById('awestruck-desc');
