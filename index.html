@@ -147,9 +147,14 @@
                 itemSelector: 'article'
             });
 
-            $grid.imagesLoaded().progress( function() {
+            function relayout() {
                 $grid.isotope('layout');
-            });
+            }
+            if ( document.readyState === 'complete' ) {
+                relayout();
+            } else {
+                $(window).on( 'load', relayout );
+            }
 
             // filter buttons
             $('.filters-button-group').on( 'click', 'button', function() {
