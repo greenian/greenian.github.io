@@ -7,6 +7,8 @@
   font-style: normal;
   background-color: var(--background-color) !important;
   color: var(--text-color) !important;
+  -webkit-text-size-adjust: 100% !important;
+  text-size-adjust: 100% !important;
 }
 
 body {
@@ -57,7 +59,7 @@ body {
 }
 
 .desc {
-  transition: display 0.5s ease-in-out allow-discrete;
+  transition: display 0.5s ease-in allow-discrete;
 }
 
 .is-checked {
