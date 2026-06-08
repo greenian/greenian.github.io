@@ -147,6 +147,10 @@
                 itemSelector: 'article'
             });
 
+            $grid.imagesLoaded().progress( function() {
+                $grid.isotope('layout');
+            });
+
             // filter buttons
             $('.filters-button-group').on( 'click', 'button', function() {
                 var filterValue = $( this ).attr('data-filter');
@@ -158,10 +162,6 @@
                 $buttonGroup.find('.is-checked').removeClass('is-checked');
                 $( this ).addClass('is-checked');
                 });
-            });
-
-            $(window).on('load', function() {
-                $grid.isotope('layout');
             });
             });
 
