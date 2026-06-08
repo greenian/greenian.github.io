@@ -370,7 +370,7 @@ img {
 
 @media (max-width: 479px) {
   .grid article {
-    margin: 2% 0;
+    margin: 2%;
     width: calc(100% - 4%);
   }
   
