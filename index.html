@@ -45,16 +45,27 @@
             </svg>
         </div>
     </div>
-    <div class="min-vh-100 ">
+    <div class="min-vh-100 px-2">
         <div style="margin-top: 50px; margin-bottom: 10px;" id="portfolio" class="d-flex flex-wrap gap-3 container-fluid button-group mx-auto justify-content-center align-items-center filters-button-group">
-                <button class="btn btn-primary button is-checked" data-filter="*">All</button>
-                <button class="btn btn-primary button" type="button" data-filter=".awe">awestruckciders.com</button>
-                <button class="btn btn-primary button" data-filter=".epl">Eplistyri</button>
-                <button class="btn btn-primary button" data-filter=".rec">Recallify</button>
-                <button class="btn btn-primary button" data-filter=".par">FBLA 2020</button>
+                <button onclick="hideAllCopy()" class="btn btn-primary button is-checked" data-filter="*">All</button>
+                <button id="awe-btn" onclick="showCopy('awe')" class="btn btn-primary button" type="button" data-filter=".awe">awestruckciders.com</button>
+                <button id="epl-btn" onclick="showCopy('epl')" class="btn btn-primary button" data-filter=".epl">Eplistyri</button>
+                <button id="par-btn" onclick="showCopy('par')" class="btn btn-primary button" data-filter=".par">FBLA 2020</button>
+        </div>
+        <div class="px-md-2 d-none fade" id="awe-copy">
+            <h1>awestruckciders.com</h1>
+            <p>Maintained C# .NET front-end and Azure SQL back-end for client-facing awestruckciders.com; implemented full features such as Events, Locator and Taproom pages; improved AEO visibility by 20% per Gumshoe reports.</p>
+        </div>
+        <div class="px-md-2 d-none fade" id="epl-copy">
+            <h1>Eplistyri</h1>
+            <p>Oversaw UI/UX design on Eplistyri, an internal app for production scheduling in the food & bev. space; closed the gap between actual production numbers and KPI target by 50%; Expo FoodTech Food4Future contender.</p>
+        </div>
+        <div class="px-md-2 d-none fade" id="par-copy">
+            <h1>FBLA 2020</h1>
+            <p>Developed full-stack client-facing website for fictional client "Parakeet Airways" for the FBLA 2020 Web Design event; 1st place at Missouri State Leadership Conference; 10th place at National Leadership Conference.</p>
         </div>
         
-        <section id="grid-container"class="transitions-enabled fluid masonry js-masonry grid ">
+        <section id="grid-container"class="align-items-center transitions-enabled fluid masonry js-masonry grid ">
             
             <article class="awe">
                 <img src="img/awestruckhome.png" class="img-responsive" />
@@ -94,22 +105,6 @@
                 <img src="img/epl-raw.png" class="img-responsive" />
             </article>
 
-            <article class="rec">
-                <img src="img/rec-splash.png" class="img-responsive" />
-            </article>
-            <article class="rec">
-                <img src="img/rec-home.png" class="img-responsive" />
-            </article>
-            <article class="rec">
-                <img src="img/rec-card.png" class="img-responsive" />
-            </article>
-            <article class="rec">
-                <img src="img/rec-quiz.png" class="img-responsive" />
-            </article>
-            <article class="rec">
-                <img src="img/rec-up.png" class="img-responsive" />
-            </article>
-
             <article class="par">
                 <img src="img/par-home.png" class="img-responsive" />
             </article>
@@ -144,7 +139,12 @@
     <script>
         $( function() {
             var $grid = $('.grid').isotope({
-                itemSelector: 'article'
+                itemSelector: 'article',
+                layoutMode: 'masonry',
+                masonry: {
+                    fitWidth: false,
+                    gutter: 0
+                }
             });
 
             function relayout() {
@@ -186,16 +186,41 @@
             }
     </script>
     <script>
-        const collapseElement = document.getElementById('awestruck-desc');
-
-        collapseElement.addEventListener('show.bs.collapse', function (e) {
-        // Check if the trigger element (the button) has the .active class
-        const activeTrigger = e.relatedTarget;
         
-        if (activeTrigger && activeTrigger.classList.contains('is-checked')) {
-            e.preventDefault(); // Stop the collapse from opening
+
+        function showCopy(page) {
+            const copyStr = page + "-copy"
+            const allCopy = document.querySelectorAll(`[id*="-copy"]:not([id*="${copyStr}"])`);
+
+            const copy = document.getElementById(copyStr); //page + -copy bcz they all follow the same format
+            const btn = document.getElementById(page + "-btn");
+
+            //show selected copy on button press
+            if (copy && (!btn || !btn.classList.contains("is-checked"))) {
+
+                //clear all that are not the copy we want to show
+                allCopy.forEach(element => {
+                    element.classList.remove('show');
+                    element.classList.add('d-none');
+                });
+
+
+                console.log("hello");
+                copy.classList.remove('d-none');
+                void copy.offsetWidth; 
+                copy.classList.add('show');
+
+                
+            }
         }
-        });
+
+        function hideAllCopy() {
+            const allCopy = document.querySelectorAll(`[id*="-copy"]`);
+            allCopy.forEach(element => {
+                element.classList.remove('show');
+                element.classList.add('d-none');
+            });
+        }
     </script>
 </body>
 </html>

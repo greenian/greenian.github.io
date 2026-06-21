@@ -342,13 +342,13 @@ img {
 
 @media (min-width: 1400px) {
   .grid article {
-    width: calc(25% - 2%);
+    width: calc(33.333% - 2%);
   }
 }
 
 @media (min-width: 1800px) {
   .grid article {
-    width: calc(20% - 2%);
+    width: calc(33.333% - 2%);
   }
 }
 
